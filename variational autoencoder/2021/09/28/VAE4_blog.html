@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Review on Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations | CS 598 Deep Generative and Dynamical Models</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Review on Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Shengyu Feng (shengyu8@illinois.edu)" />
+<meta property="og:description" content="Shengyu Feng (shengyu8@illinois.edu)" />
+<link rel="canonical" href="https://cs598ban.github.io/Fall2021/variational%20autoencoder/2021/09/28/VAE4_blog.html" />
+<meta property="og:url" content="https://cs598ban.github.io/Fall2021/variational%20autoencoder/2021/09/28/VAE4_blog.html" />
+<meta property="og:site_name" content="CS 598 Deep Generative and Dynamical Models" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://cs598ban.github.io/Fall2021/variational%20autoencoder/2021/09/28/VAE4_blog.html","@type":"BlogPosting","headline":"Review on Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations","dateModified":"2021-09-28T00:00:00-05:00","datePublished":"2021-09-28T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cs598ban.github.io/Fall2021/variational%20autoencoder/2021/09/28/VAE4_blog.html"},"description":"Shengyu Feng (shengyu8@illinois.edu)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Fall2021/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cs598ban.github.io/Fall2021/feed.xml" title="CS 598 Deep Generative and Dynamical Models" /><link rel="shortcut icon" type="image/x-icon" href="/Fall2021/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Fall2021/">CS 598 Deep Generative and Dynamical Models</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Fall2021/search/">Search</a><a class="page-link" href="/Fall2021/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Review on Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations</h1><p class="page-description">Shengyu Feng (shengyu8@illinois.edu)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-28T00:00:00-05:00" itemprop="datePublished">
+        Sep 28, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Fall2021/categories/#Variational Autoencoder">Variational Autoencoder</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div class="stackedit__html"><h1 id="challenging-common-assumptions-in-the-unsupervised-learning-of-disentangled-representations">Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations</h1>
+<p>This is the best paper [2] in ICML 2019, which incurred huge controversy at that time. It heavily criticizes the previous works on disentanglement, but some claims of it are regarded to be too strong. I will introduce those assumptions challenged by this paper. Although I find some arguments not well supported, most of the conclusions from this paper are actually valuable and inspiring for the later works on the disentanglement.</p>
+<h2 id="introduction-to-disentanglement">Introduction to disentanglement</h2>
+<p>There’s actually no formal definition of disentanglement right now. Intuitively, disentangled representation should be compact and interpretable, where each dimension of the representation is informative and independent. Consider two independent random variables <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal">a</span></span></span></span></span> and <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal">b</span></span></span></span></span>, then <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">x</mi><mo>=</mo><mo stretchy="false">[</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo separator="true">,</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbf{x}=[a+b,a-b]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.44444em; vertical-align: 0em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">]</span></span></span></span></span> is an entangled representation while <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">x</mi><mo>=</mo><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbf{x}=[a,b]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.44444em; vertical-align: 0em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathnormal">b</span><span class="mclose">]</span></span></span></span></span> is a disentangled representation. These two representations actually contain the same information about <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal">a</span></span></span></span></span> and <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal">b</span></span></span></span></span> but the disentangled representation is expected to be more interpretable and more useful for downstream tasks, such as controllable sample generation and robot manipulation.</p>
+<p>For a long period, many VAE-based methods like <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.05278em;">β</span></span></span></span></span>-VAE [1], with additional tricks to encourage the dimension independence of the latent representation, have been proposed for disentanglement. But all these methods are based on some common assumptions and they are not carefully verified.</p>
+<h2 id="disentanglement-is-impossible-without-inductive-bias">Disentanglement is impossible without inductive bias</h2>
+<p>This paper claims that, for an arbitrary generative model, the disentanglement is actually impossible. For each disentanglement representation <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.04398em;">z</span></span></span></span></span>, there exists an inifinite family of bijective functions <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.04398em;">z</span><span class="mclose">)</span></span></span></span></span>, where <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.04398em;">z</span><span class="mclose">)</span></span></span></span></span> is entangled but it shares the same marginal distribution with <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.04398em;">z</span></span></span></span></span>. In other words, there are infinitely many generative models which have the same marginal distribution for the observation <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal">x</span></span></span></span></span>, and without inductive bias, there’s no guarantee the one we obtain gives the disentangled representation. This theorem is also similar to the well-known “No free lunch theorem” [9]. Therefore, it’s necessary for each disentanglement method to clearly define its inductive bias.</p>
+<h2 id="challenging-the-common-assumptions-behind-disentanglement-learning">Challenging the common assumptions behind disentanglement learning</h2>
+<p>This paper investigates several assumptions behind the disentanglement learning. It considers 6 distanglement methods, including <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.05278em;">β</span></span></span></span></span>-VAE [1], AnnealedVAE [6], FactorVAE [5], <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.05278em;">β</span></span></span></span></span>-TCVAE [3], DIP-VAE-I and DIP-AVE-II [4]. It also uses 6 metrics for measuring disentanglement, including <em>BetaVAE</em> metric [1], <em>FactorVAE</em> metric [5], <em>Mutual Information GAP (MIG)</em> [3], <em>Modularity</em> [7], <em>DCI Disentanglement gap</em> (named as “disentanglement metric” originally) [8], and <em>SAP score</em> [4]. The experiments are conducted on datasets <em>dSprites</em>, <em>Cars3D</em>, <em>SmallNORB</em>, <em>Shapes3D</em>, <em>Color-dSprites</em>, <em>Noisy-dSprites</em> and <em>Scream-dSprites</em>.</p>
+<h3 id="mean-representation-of-the-latent-variables-are-correlated">Mean representation of the latent variables are correlated</h3>
+<p>It’s a common practice to use the mean vector of the Gaussian encoder as the representation of the latent variable for evaluation. However, it turns out that although the samples from the Gaussian encoder have uncorrelated dimensions, the mean vector doesn’t internally have this property. Constrained by a stronger regularization, as shown in Fig 1, the total correlation, which measures the correlation among dimensions, of the sampled representation indeed goes down (left) but the total correlation of the mean representation increases (right) instead, except for DIP-VAE-I which directly optimizes the covariance matrix of the mean representation to be diagonal.</p>
+<figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig1.png" width="600" />
+<figcaption>Fig 1. Total correlation among dimensions of latent representations, mean representation (left) and sampled representation (right). Source: Locatello et al. [2]</figcaption>
+</figure>    
+<h3 id="disentanglement-metrics-are-correlated">Disentanglement metrics are correlated</h3>
+<p>The second question is whether all these metrics measuring the disentanglement are correlated. And the results give the positive answer. All metrics except <em>Modularity</em> are mildly correlated.</p>
+<figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig2.png" width="500" />
+<figcaption>Fig 2. Correlation among metrics. Source: Locatello et al. [2]</figcaption>
+</figure>   
+<h3 id="importance-of-models-and-hyperparameters">Importance of models and hyperparameters</h3>
+<p>All these methods claim that they get a better disentangled representation, but whether the improvement in their metrics is from more disentanglement remains unknown. In the experiment, each model is run over different random seeds, but it turns out that these methods have large overlappings (left in Fig 3) in their performances. In other words, a good random seed is more meaningful than a good objective. The same conclusion holds for the hyperparameter (right in Fig 3).</p>
+ <figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig3.png" width="600" />
+<figcaption>Fig 3. Violin plots of disentanglement scores over random seeds for different models (left) and different hyperparameters (right). Source: Locatello et al. [2]</figcaption>
+</figure>  
+<h3 id="recipes-for-hyperparameter-selection">Recipes for hyperparameter selection</h3>
+<p>The paper now considers the strategy to select a good hyperparameter for a model. However, all these metrics require a substantial amount of labels or a full generative model, so we need to consider the hyperparameter selection in an unsupervised manner. Unfortunately, no model could dominate others all the time and there does not exist a hyperparameter selection strategy that works consistently well as shown in Fig 4. Additionally, there’s also no strategy to identify a good and a bad run for different random seeds.</p>
+  <figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig4.png" width="1000" />
+<figcaption>Fig 4. Model performances under different hyperparameters on different datasets. Source: Locatello et al. [2]</figcaption>
+</figure>    
+<p>Specifically, the paper investigates the unsupervised losses and transfer performances, which can also serve as a strategy to select the hyperparamter without supervision on the target dataset. For the unsupervised losses, including the reconstruction error, KL divergence between the prior and the approximate posterior, evidence lower bound (ELBO), and the estimated total correlation of the sampled representation, none of them are actually correlated with the disentanglement metrics (Fig 5).</p>
+<figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig5.png" width="900" />
+<figcaption>Fig 5. Correlation between disentanglement scores and unsupervised losses. Source: Locatello et al. [2]</figcaption>
+</figure>    
+The transferring fails as well. When the model is transferred across the same metric and same dataset (different random seeds), there's 80.7% chance the model performance is not worse than the random model selection. However, this result drops to 59.3% for different datasets and further drops to 54.9% when metrics are also different. One example is shown in Fig 6.
+<figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig6.png" width="500" />
+<figcaption>Fig 6. Model performance after transferring. Source: Locatello et al. [2]</figcaption>
+</figure> 
+<h3 id="benefits-of-disentanglement">Benefits of disentanglement</h3>
+<p>Finally, this paper explores the benefits of the disentanglement. The disentangled representation is intuitively believed to be more useful for downstream tasks, and able to reduce the sample complexity of learning. In the experiments, the downstream performances show high correlation with the disentanglement scores (Fig 7), but the authors are careful with the conclusion and doubts the source of the correlation, which could be either the disentanglement or the relevant information embedded in the representation. I think the experiments here are incomplete, where authors can actually build entangled representations from the disentangled ones and evaluate the performance of the entangled representations. This comparison could give the idea where the correlation comes from.</p>
+<figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig7.png" width="500" />
+<figcaption>Fig 7. Correlation between downstream performances and disentanglement scores. Source: Locatello et al. [2]</figcaption>
+</figure> 
+Besides, the experimental results show no clear correlation between the disentanglement scores and sample efficiencies (Fig 8).
+<figure align="center">
+<img src="https://raw.githubusercontent.com/Shengyu-Feng/Public_images/master/blog_vae4/fig8.png" width="500" />
+<figcaption>Fig 8. Correlation between sample efficiencies and disentanglement scores. Source: Locatello et al. [2]</figcaption>
+</figure> 
+<h2 id="future-directions">Future directions</h2>
+<p>This paper proposes three principles for the future work on the disentanglement based on the experiments before.</p>
+<ol>
+<li>
+<p><strong>Inductive biases and implicit and explicit supervision.</strong> As proved by this paper, the inductive bias is necessary for the disentangled methods, which should be made clear in the later works. Besides, it’s demonstrated by the experimental results that it’s impossible for the hyperparameter selection under no supervision, the supervision parts should also be explicitly specified.</p>
+</li>
+<li>
+<p><strong>Concrete practical benefits of disentangled representations.</strong> Previous works take it for grant that disentangled representation is better, however, this paper points out its benefits is not clear yet and quite data dependent. Therefore, the concrete benefits of disentangled representations should be specified under each context.</p>
+</li>
+<li>
+<p><strong>Experimental setup and diversity of data sets.</strong> It’s shown that no model can consistently outperform others on all datasets, so it’s questionable whether these models really improve the disentanglement. A sound, robust, and reproducible experimental setup on a diverse set of data sets is needed to demonstrate the advantage of a disentangled method.</p>
+</li>
+</ol>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] 2017 (ICLR): I. Higgins, L. Matthey, A. Pal, C. Burgess, X. Glorot, M. Botvinick, S. Mohamed, A. Lerchner. <a href="https://openreview.net/forum?id=Sy2fzU9gl">beta-VAE: Learning basic visual concepts with a constrained variational framework</a>. ICLR, 2017.</li>
+<li>[2] 2019 (ICML): F. Locatello, S. Bauer, M. Lucic, G. RÃ¤tsch, S. Gelly, B. Scholkopf, O. Bachem. <a href="https://arxiv.org/abs/1811.12359">Challenging common assumptions in the unsupervised learning of disentangled representations</a>. ICML, 2019.</li>
+<li>[3] 2018 (NeurIPS): T. Chen, X. Li, R. Grosse, D. Duvenaud.  <a href="https://arxiv.org/abs/1802.04942">Isolating sources of disentanglement in variational autoencoders</a>. NeurIPS, 2018.</li>
+<li>[4] 2018 (ICLR): A. Kumar, P. Sattigeri, A. Balakrishnan. <a href="https://arxiv.org/abs/1711.00848">Variational inference of disentangled latent concepts from unlabeled observations</a>. ICLR, 2018.</li>
+<li>[5] 2018 (ICML): H. Kim, A. Mnih. <a href="https://arxiv.org/abs/1802.05983">Disentangling by factorising</a>. NIPS, 2017.</li>
+<li>[6] 2017 (NIPS): C. Burgess, I. Higgins, A. Pal, L. Matthey, N. Watters, G. Desjardins, A. Lerchner. <a href="https://arxiv.org/abs/1804.03599">Understanding disentangling in <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.05278em;">β</span></span></span></span></span>-VAE</a>. NIPS, 2017.</li>
+<li>[7] 2018 (NIPS):  K. Ridgeway, M. Mozer. <a href="https://arxiv.org/abs/1802.05312">Learning deep disentangled embeddings with the f-statistic loss</a>. NIPS, 2018.</li>
+<li>[8] 2018 (ICLR): C. Eastwood, C. Williams. <a href="https://openreview.net/pdf?id=By-7dz-AZ">A framework for the quantitative evaluation of disentangled representations</a>. ICLR, 2018.</li>
+<li>[9] 1997 (IEEE): D. Wolpert, W. Macready. <a href="https://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf">No Free Lunch Theorems for Optimization</a>. IEEE Transactions on Evolutionary Computation, 1997.</li>
+</ul>
+</div>
+
+  </div><a class="u-url" href="/Fall2021/variational%20autoencoder/2021/09/28/VAE4_blog.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Fall2021/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Fall2021/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Fall2021/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blogs created as a part of graduate course at UIUC on deep generative and dynamical models.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

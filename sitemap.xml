@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://cs598ban.github.io/Fall2021/pixelrnn/quantiles/2021/09/09/AR2_blog.html</loc>
+<lastmod>2021-09-09T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog.html</loc>
+<lastmod>2021-09-14T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog2.html</loc>
+<lastmod>2021-09-14T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog3.html</loc>
+<lastmod>2021-09-14T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://cs598ban.github.io/Fall2021/variational%20autoencoder/2021/09/16/VAE1_blog.html</loc>
+<lastmod>2021-09-16T00:00:00-05:00</lastmod>
+</url>
+<url>
 <loc>https://cs598ban.github.io/Fall2021/variational%20autoencoders/2021/09/21/VAE2_blog.html</loc>
 <lastmod>2021-09-21T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://cs598ban.github.io/Fall2021/variational%20autoencoder/2021/09/28/VAE4_blog.html</loc>
+<lastmod>2021-09-28T00:00:00-05:00</lastmod>
 </url>
 <url>
 <loc>https://cs598ban.github.io/Fall2021/</loc>

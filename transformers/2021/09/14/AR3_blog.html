@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Review on An image is 16 x 16 words | CS 598 Deep Generative and Dynamical Models</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Review on An image is 16 x 16 words" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Sanchit Vohra (sv4@illinois.edu)" />
+<meta property="og:description" content="Sanchit Vohra (sv4@illinois.edu)" />
+<link rel="canonical" href="https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog.html" />
+<meta property="og:url" content="https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog.html" />
+<meta property="og:site_name" content="CS 598 Deep Generative and Dynamical Models" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-14T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog.html","@type":"BlogPosting","headline":"Review on An image is 16 x 16 words","dateModified":"2021-09-14T00:00:00-05:00","datePublished":"2021-09-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cs598ban.github.io/Fall2021/transformers/2021/09/14/AR3_blog.html"},"description":"Sanchit Vohra (sv4@illinois.edu)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Fall2021/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cs598ban.github.io/Fall2021/feed.xml" title="CS 598 Deep Generative and Dynamical Models" /><link rel="shortcut icon" type="image/x-icon" href="/Fall2021/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Fall2021/">CS 598 Deep Generative and Dynamical Models</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Fall2021/search/">Search</a><a class="page-link" href="/Fall2021/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Review on An image is 16 x 16 words</h1><p class="page-description">Sanchit Vohra (sv4@illinois.edu)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-14T00:00:00-05:00" itemprop="datePublished">
+        Sep 14, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Fall2021/categories/#Transformers">Transformers</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div class="stackedit__html"><h1 id="an-image-is-16-x-16-words">An image is 16 x 16 words</h1>
+<p>Transformers and attention-based methods have skyrocketed in popularity in recent years. These models are the current state-of-the-art in natural language processing applications (BERT, GPT). However, in computer vision, convolutional patterns still remain dominant. Applying transformers directly to image pixels is not practical because the self-attention operation scales quadratically. Many recent works experiment with hybrid convolutional and attention based methods. Other works that replace convolutions for attention all together, like the Sparse Transformer, use specialized attention patterns that are difficult to scale on hardware accelerators. This paper demonstrates that the vanilla transformer <sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>, with minimal modifications, can achieve state-of-the-art performance in image classification when trained on large datasets.</p>
+<h2 id="vision-transformer-architecture">Vision Transformer Architecture</h2>
+<h3 id="input-format">Input format</h3>
+<p>The input image <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>H</mi><mo>×</mo><mi>W</mi><mo>×</mo><mi>C</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x \in \R^{H \times W \times C }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.5782em; vertical-align: -0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.841331em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.841331em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right: 0.08125em;" class="mord mathnormal mtight">H</span><span class="mbin mtight">×</span><span style="margin-right: 0.13889em;" class="mord mathnormal mtight">W</span><span class="mbin mtight">×</span><span style="margin-right: 0.07153em;" class="mord mathnormal mtight">C</span></span></span></span></span></span></span></span></span></span></span></span></span> is reshaped into a sequence of flattened patches <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>p</mi></msub><mo>=</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>N</mi><mo>×</mo><mo stretchy="false">(</mo><msup><mi>P</mi><mn>2</mn></msup><mi>C</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">x_p = \R^{N \times (P^2 C )}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.716668em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.98692em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.98692em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right: 0.10903em;" class="mord mathnormal mtight">N</span><span class="mbin mtight">×</span><span class="mopen mtight">(</span><span class="mord mtight"><span style="margin-right: 0.13889em;" class="mord mathnormal mtight">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.891314em;"><span class="" style="top: -2.931em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span style="margin-right: 0.07153em;" class="mord mathnormal mtight">C</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span> where <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span style="margin-right: 0.13889em;" class="mord mathnormal">P</span></span></span></span></span> is that patch size. Since the transformer uses constant latent vector size D through all of its layers, the <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">x_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.716668em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> flattened patches are linearly projected into <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span style="margin-right: 0.02778em;" class="mord mathnormal">D</span></span></span></span></span> dimensions using a trainable linear layer. This forms the patch embeddings.</p>
+<h3 id="positional-embeddings">Positional Embeddings</h3>
+<p>Similar to <sup class="footnote-ref"><a href="#fn1" id="fnref1:1">1</a></sup>, positional embeddings are added to the patch embeddings to convey positional information to the model. The authors use learnable 1D embeddings and found that 2D embeddings don’t improve performance. The 1D embeddings use the index of the patch row-by-row top-to-bottom.</p>
+<h3 id="class-token">Class Token</h3>
+<p>Similar to BERT <sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup>, the authors prepend a learnable class token <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>z</mi><mn>0</mn><mn>0</mn></msubsup></mrow><annotation encoding="application/x-tex">z_0^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.06222em; vertical-align: -0.248108em;"></span><span class="mord"><span style="margin-right: 0.04398em;" class="mord mathnormal">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span class="" style="top: -2.45189em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.248108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> embedding along with its learnable positional encoding to the input. The state of this token at the output <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>z</mi><mi>L</mi><mn>0</mn></msubsup></mrow><annotation encoding="application/x-tex">z_L^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.08944em; vertical-align: -0.275331em;"></span><span class="mord"><span style="margin-right: 0.04398em;" class="mord mathnormal">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span class="" style="top: -2.42467em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.275331em;"><span class=""></span></span></span></span></span></span></span></span></span></span> is the input of a classification head MLP which outputs the class probabilities for image classification.</p>
+<h3 id="transformer-encoder">Transformer Encoder</h3>
+<p>The inputs defined above are fed directly into the transformer encoder from<sup class="footnote-ref"><a href="#fn1" id="fnref1:2">1</a></sup>. The transformer encoder consists of alternating layers of multihead self-attention and MLP blocks. The image taken from paper <sup class="footnote-ref"><a href="#fn2" id="fnref2:1">2</a></sup> below summarizes the transformer encoder model:</p>
+<p><img src="https://i.imgur.com/0i9HlxJ.png" alt="enter image description here" /></p>
+<h3 id="hybrid-model">Hybrid Model</h3>
+<p>Instead of the image, the input patches can be formed from the output feature maps of a CNN. In this scheme, the linear projection is applied to the patches from the CNN to form the patch emdeddings. The other parts of the architecture remain the same.</p>
+<h3 id="model-visualization">Model Visualization</h3>
+<p>The image below shows the entire model for the vision transformer. Notice how the model is very similar to the transformer encoder form <sup class="footnote-ref"><a href="#fn1" id="fnref1:3">1</a></sup>.</p>
+<p><img src="https://i.imgur.com/MDbaCKR.png" alt="enter image description here" /></p>
+<h2 id="results">Results</h2>
+<p>The authors evaluate 3 variations of their Vision Transformer (ViT) on image classification datasets. The image below summarizes the 3 ViT models. Additionally, the authors experiment with different patch sizes, reporting the results for <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>×</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">16 \times 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">16</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">16</span></span></span></span></span> patches and <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>14</mn><mo>×</mo><mn>14</mn></mrow><annotation encoding="application/x-tex">14 \times 14</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">14</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">14</span></span></span></span></span> patches.</p>
+<p><img src="https://i.imgur.com/b3B2jPA.png" alt="enter image description here" /><br />
+As seen from the image taken from <sup class="footnote-ref"><a href="#fn2" id="fnref2:2">2</a></sup> below, the Vision Transformer outperforms CNN based approaches on across multiple datasets.<br />
+<img src="https://i.imgur.com/B6eAPpo.png" alt="enter image description here" /><br />
+The image taken from <sup class="footnote-ref"><a href="#fn2" id="fnref2:3">2</a></sup> below shows how the ViT takes significantly less compute to pre-train than its CNN counterparts.</p>
+<p><img src="https://i.imgur.com/miZCAE2.png" alt="enter image description here" /></p>
+<h2 id="intuition">Intuition</h2>
+<p>If you’ve read this paper so far, you must certainly be confused about the results of the ViT. How does the vanilla vision transformer working on image patches learn to solve computer vision task better than the state-of-the-art CNN models? The authors seems to think its because of the inherent inductive bias in CNNs. The convolution operation exploits locality and two-dimensional spatial structure of images. The idea of looking at neighboring pixels to extract meaningful representation of image data is what made CNNs rise in popularity many years ago. However, because CNNs are so highly specialized, they are not as good as transformers at learning features that do not depend on nearby pixels. Because of the global attention layers and minimal image-specific inductive bias, the vision transformer is able to learn features that the CNN model misses out because of its specialized convolution operation. The image below is a comparison of the linear embedding in the ViT to convolutional layers in CNN. Visualizations taken from paper <sup class="footnote-ref"><a href="#fn2" id="fnref2:4">2</a></sup>.</p>
+<p><img src="https://i.imgur.com/TOkeGuY.png" alt="enter image description here" /><br />
+As you can see, the learned linear layer closely resembles convolutional filters learned by CNNs. But the transformer model can also learn much more than that because it is not limited by convolutional operations.</p>
+<p>It is to be noted that when training on mid-sized datasets, the CNN based model still outperforms ViT because the specialized convolutional operations quickly learn representations that frequently occur in images. However, when training with very large datasets, the transformer is able to learn features that the convolution misses out on because of observing enough samples.</p>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin: “Attention Is All You Need”, 2017; <a href="https://urldefense.com/v3/__http://arxiv.org/abs/1706.03762__;!!DZ3fjg!vB4FVPCPBjpvKyd9NAPO1XCiq0V9iTtXeJvEbjsVbD5D-pqlRbVpR1yOvf0NOMV3Ng$">http://arxiv.org/abs/1706.03762</a> arXiv:1706.03762. <a href="#fnref1" class="footnote-backref">↩︎</a> <a href="#fnref1:1" class="footnote-backref">↩︎</a> <a href="#fnref1:2" class="footnote-backref">↩︎</a> <a href="#fnref1:3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova: “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding”, 2018; <a href="https://urldefense.com/v3/__http://arxiv.org/abs/1810.04805__;!!DZ3fjg!vB4FVPCPBjpvKyd9NAPO1XCiq0V9iTtXeJvEbjsVbD5D-pqlRbVpR1yOvf0_a9vG5Q$">http://arxiv.org/abs/1810.04805</a> arXiv:1810.04805. <a href="#fnref2" class="footnote-backref">↩︎</a> <a href="#fnref2:1" class="footnote-backref">↩︎</a> <a href="#fnref2:2" class="footnote-backref">↩︎</a> <a href="#fnref2:3" class="footnote-backref">↩︎</a> <a href="#fnref2:4" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div>
+
+  </div><a class="u-url" href="/Fall2021/transformers/2021/09/14/AR3_blog.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Fall2021/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Fall2021/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Fall2021/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blogs created as a part of graduate course at UIUC on deep generative and dynamical models.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
