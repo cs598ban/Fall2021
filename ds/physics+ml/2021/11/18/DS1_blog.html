@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>DS1 Discovering Equations | CS 598 Deep Generative and Dynamical Models</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="DS1 Discovering Equations" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Anurendra Kumar (ak32@illinois.edu) https://anurendra.github.io/" />
+<meta property="og:description" content="Anurendra Kumar (ak32@illinois.edu) https://anurendra.github.io/" />
+<link rel="canonical" href="https://cs598ban.github.io/Fall2021/ds/physics+ml/2021/11/18/DS1_blog.html" />
+<meta property="og:url" content="https://cs598ban.github.io/Fall2021/ds/physics+ml/2021/11/18/DS1_blog.html" />
+<meta property="og:site_name" content="CS 598 Deep Generative and Dynamical Models" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-18T00:00:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://cs598ban.github.io/Fall2021/ds/physics+ml/2021/11/18/DS1_blog.html","@type":"BlogPosting","headline":"DS1 Discovering Equations","dateModified":"2021-11-18T00:00:00-06:00","datePublished":"2021-11-18T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cs598ban.github.io/Fall2021/ds/physics+ml/2021/11/18/DS1_blog.html"},"description":"Anurendra Kumar (ak32@illinois.edu) https://anurendra.github.io/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Fall2021/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cs598ban.github.io/Fall2021/feed.xml" title="CS 598 Deep Generative and Dynamical Models" /><link rel="shortcut icon" type="image/x-icon" href="/Fall2021/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Fall2021/">CS 598 Deep Generative and Dynamical Models</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Fall2021/search/">Search</a><a class="page-link" href="/Fall2021/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">DS1 Discovering Equations</h1><p class="page-description">Anurendra Kumar (ak32@illinois.edu) https://anurendra.github.io/</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-11-18T00:00:00-06:00" itemprop="datePublished">
+        Nov 18, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Fall2021/categories/#DS">DS</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/Fall2021/categories/#Physics+ML">Physics+ML</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div class="stackedit__html"><hr />
+<h3 id="abstract">Abstract</h3>
+<p>Today we’ll talk about on how we  can use compressive sensive and optimization to learn the dynamics of an underlying physical system. This blog is based on the paper from Prof. Kutz’s lab - <a href="https://www.pnas.org/content/113/15/3932">Discovering governing equations from data by sparse<br />
+identification of nonlinear dynamical systems</a>. The paper develops a dictionary learning framework with overrepresented dictionary which enables us for interpretable non-linearity. We’ll discuss about it in the details below.</p>
+<hr />
+<h3 id="history--modeling-dynamics-from-data">History : Modeling Dynamics from Data</h3>
+<p>Science started from astronomy, which started by observing the movements of stars, planets and heavenly bodies. Copernicus presented heliocentric theory which proposed sun as the center of the universe instead of earth. Later, Kepler gathered huge amount of planetary motion data. This enabled him to come up with three Kepler’s laws,</p>
+<p><img src="https://www.super-science-fair-projects.com/wp-content/uploads/2009/10/keplers-laws.png" alt="" /></p>
+<p>Finally, Newton developed a unified theory of motion across the universe. While Kepler’s contribution was primarily in generating detailed data, Newton’s contribution was in developing a unified theory which explains data.</p>
+<h3 id="background-symbolic-regression-and-compressive-sensing">Background: Symbolic Regression and Compressive Sensing</h3>
+<p>Symbolic regression which is a generalization of regression, aims to learn the underlying interaction in data. It searches over the space of all possible mathematical formulas which best predict the output variable, starting from a set of base functions like addition, trigonometric functions, and exponentials. However, it is computationally expensive, does not clearly scale well to large-scale dynamical systems of interest, and may be prone to over-fitting.</p>
+<p><img src="https://www.researchgate.net/profile/Michael-Affenzeller/publication/317026414/figure/fig2/AS:621592413499392@1525210588090/Symbolic-regression-model-in-mathematical-notation-as-well-as-in-syntax-tree.png" alt="" /></p>
+<p>This paper utilizes ideas from sparse regression which has been used to find solutions for underdetermined linear systems. Sparsity helps us break the Nyquist–Shannon sampling theorem. In sparse regression, signal <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal">x</span></span></span></span></span> is K sparse,<br />
+<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi mathvariant="normal">Ψ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">x = \Psi s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord">Ψ</span><span class="mord mathnormal">s</span></span></span></span></span><br />
+<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">l1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.01968em;">l</span><span class="mord">1</span></span></span></span></span> norm is often imposed as regularization for sparsity. Extensive research in this area has been done often referred as Compressive Sensing. Terrence Tao, who is a professor at UCLA actively works on this. Their methods bypasees our need to perform a combinatorially intractable bruteforce search for sparse solution. It is found with<br />
+high probability using convex methods that scale to large problems.</p>
+<h3 id="problem-set-up-dynamical-systems">Problem Set up: Dynamical Systems</h3>
+<p><span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>d</mi><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mi mathvariant="bold">x</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\frac{d}{dt}\mathbf{x}(t) = f(\mathbf{x}(t))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.22511em; vertical-align: -0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.880108em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">t</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.394em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.345em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathbf">x</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.10764em;">f</span><span class="mopen">(</span><span class="mord mathbf">x</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">))</span></span></span></span></span><br />
+Let’s assume  <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">x</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{x}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathbf">x</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span>  denotes state at time <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.61508em; vertical-align: 0em;"></span><span class="mord mathnormal">t</span></span></span></span></span>, <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.88888em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.10764em;">f</span></span></span></span></span> denotes with  dynamics f(\mathbf{x}(t).  In most physical systems,  only a few nonlinear terms in the<br />
+dynamics exist. Therefore it’s sparse in a high-dimensional nonlinear function space. So, if we can perform non-linear transformation, we can cast problem of identification of dynamical system as sparse regresssion.</p>
+<h3 id="dynamical-systems-as-sparse-regression">Dynamical Systems as Sparse Regression</h3>
+<p>Let’s denote <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">X</mi></mrow><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68611em; vertical-align: 0em;"></span><span class="mord mathbf">X</span></span></span></span></span> and   <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi mathvariant="bold">X</mi><mo>˙</mo></mover></mrow><annotation encoding="application/x-tex">\dot{\mathbf{X}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.92297em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.92297em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord mathbf">X</span></span><span class="" style="top: -3.25511em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.05555em;"><span class="mord">˙</span></span></span></span></span></span></span></span></span></span></span> as state and dynamic matrix. <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.03148em;">k</span></span></span></span></span> -th row of <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">X</mi></mrow><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68611em; vertical-align: 0em;"></span><span class="mord mathbf">X</span></span></span></span></span> contains observation vector at time <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.03148em;">k</span></span></span></span></span>. Now, let’s do many transformation of <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">X</mi></mrow><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68611em; vertical-align: 0em;"></span><span class="mord mathbf">X</span></span></span></span></span> , such as linear, polynomial, cosine and exponentials. This should be guided by the applications where the possible non-linearities is known. Finally we append these matrices to contain a big matrix <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi></mrow><annotation encoding="application/x-tex">\Theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord">Θ</span></span></span></span></span>.  Then we can solve the following problem,<br />
+<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi mathvariant="bold">X</mi><mo>˙</mo></mover><mo>=</mo><mi mathvariant="normal">Θ</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">\dot{\mathbf{X}} =\Theta W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.92297em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.92297em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord mathbf">X</span></span><span class="" style="top: -3.25511em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.05555em;"><span class="mord">˙</span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord">Θ</span><span class="mord mathnormal" style="margin-right: 0.13889em;">W</span></span></span></span></span><br />
+where, weight <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.13889em;">W</span></span></span></span></span> has sparse coefficients. It can be seen that each row has separate optimization. Therefore, complexity increaseslinearly with the number of time instants and not on the number of non-linear transformations. Basis functions are really important here.  So we should test many different function bases and use the sparsity and accuracy of the resulting model as a diagnostic tool to determine the correct basis to represent the dynamics.</p>
+<h3 id="approximating-derivatives">Approximating Derivatives</h3>
+<p>In reality we only observe discrete values of <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">X</mi></mrow><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68611em; vertical-align: 0em;"></span><span class="mord mathbf">X</span></span></span></span></span> and <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi mathvariant="bold">X</mi><mo>˙</mo></mover></mrow><annotation encoding="application/x-tex">\dot{\mathbf{X}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.92297em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.92297em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord mathbf">X</span></span><span class="" style="top: -3.25511em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.05555em;"><span class="mord">˙</span></span></span></span></span></span></span></span></span></span></span> is not known. Therefore, we need to approximate it.  Total variation  regularization is used to denoise derivative. To counter the noise due to approximation, we should rather solve the following problem,<br />
+<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi mathvariant="bold">X</mi><mo>˙</mo></mover><mo>=</mo><mi mathvariant="normal">Θ</mi><mi>W</mi><mo>+</mo><mi>σ</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">\dot{\mathbf{X}} = \Theta W + \sigma Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.92297em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.92297em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord mathbf">X</span></span><span class="" style="top: -3.25511em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.05555em;"><span class="mord">˙</span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.76666em; vertical-align: -0.08333em;"></span><span class="mord">Θ</span><span class="mord mathnormal" style="margin-right: 0.13889em;">W</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.03588em;">σ</span><span class="mord mathnormal" style="margin-right: 0.07153em;">Z</span></span></span></span></span><br />
+where, <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.07153em;">Z</span></span></span></span></span> is iid and normally distributed. Traditionally, people use Lasso for sparse regression.  However, it is computationally expensive. The paper uses Sequential thresholded least-squares algorithm to find it.  Depending on the noise, it may be necessary to filter <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">X</mi></mrow><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68611em; vertical-align: 0em;"></span><span class="mord mathbf">X</span></span></span></span></span> and <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi mathvariant="bold">X</mi><mo>˙</mo></mover></mrow><annotation encoding="application/x-tex">\dot{\mathbf{X}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.92297em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.92297em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord mathbf">X</span></span><span class="" style="top: -3.25511em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.05555em;"><span class="mord">˙</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<h3 id="dynamical-systems-with-pde">Dynamical Systems with PDE</h3>
+<p>Most of the physical systems are PDE and not ODE. This method poses a serious problem since numerical discretization on a spatial grid is exponentially large. For example, in fluid Dynamics, a simple 2D and 3D flows may require tens of thousands up to billions of variables to represent the discretized system. Therefore, current formulation is ill suited, since each row has separate optimization.</p>
+<p>However, the good news that many high-dimensional systems of interest evolve on a low dimensional manifold or attractor that is well-approximated using a low-rank basis. Therefore, we can first  use SVD to decompose <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">X</mi></mrow><annotation encoding="application/x-tex">\mathbf{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68611em; vertical-align: 0em;"></span><span class="mord mathbf">X</span></span></span></span></span>. This has attracted decades of research for fluid dymaics. Proper orthogonal decomposition is a state of the art method for decomposing the flow governed by the Navier stokes formulation.</p>
+<h3 id="results-lorenz-system">Results: Lorenz System</h3>
+<p><img src="https://www.pnas.org/content/113/15/3932/F1.large.jpg" alt="" /></p>
+<p>The paper shows that proposed method can identify lorenz attractor.  It can capture rich and chaotic dynamics that evolve on an attractor. Only a few terms in the right-hand side of the equation are required</p>
+<h3 id="results-fluid-dynamics">Results: Fluid Dynamics</h3>
+<p><img src="https://www.pnas.org/content/pnas/113/15/3932/F2.large.jpg" alt="" /></p>
+<p>The paper simulates fluid flow data, Data are collected for the fluid flow past a cylinder using direct numerical simulations of the 2D Navier–Stokes equations. It then transforms to a lower dimension and perform sparse regression.  We can see that it is able to identify dynamics.</p>
+<h3 id="extensions">Extensions</h3>
+<p>There can be a scenario where dynamics is also dependent on other parameters. In these scenario, we can solve,<br />
+<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\dot{x} = f(x,\mu)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.66786em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.66786em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord mathnormal">x</span></span><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.11111em;"><span class="mord">˙</span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathnormal">μ</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="references">References</h3>
+<p>Brunton, S. L., Proctor, J. L., &amp; Kutz, J. N. (2016). Discovering governing equations from data by sparse identification of nonlinear dynamical systems. <em>Proceedings of the national academy of sciences</em>, <em>113</em>(15), 3932-3937.</p>
+</div>
+
+  </div><a class="u-url" href="/Fall2021/ds/physics+ml/2021/11/18/DS1_blog.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Fall2021/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Fall2021/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Fall2021/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blogs created as a part of graduate course at UIUC on deep generative and dynamical models.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

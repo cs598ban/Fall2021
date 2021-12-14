@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>GAN1 f-GAN-Training Generative Neural Samplers using Variational Divergence Minimization | CS 598 Deep Generative and Dynamical Models</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="GAN1 f-GAN-Training Generative Neural Samplers using Variational Divergence Minimization" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Vivek Bhatt (vivekb2@illinois.edu)" />
+<meta property="og:description" content="Vivek Bhatt (vivekb2@illinois.edu)" />
+<link rel="canonical" href="https://cs598ban.github.io/Fall2021/gan/2021/10/14/GAN1_blog.html" />
+<meta property="og:url" content="https://cs598ban.github.io/Fall2021/gan/2021/10/14/GAN1_blog.html" />
+<meta property="og:site_name" content="CS 598 Deep Generative and Dynamical Models" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-14T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://cs598ban.github.io/Fall2021/gan/2021/10/14/GAN1_blog.html","@type":"BlogPosting","headline":"GAN1 f-GAN-Training Generative Neural Samplers using Variational Divergence Minimization","dateModified":"2021-10-14T00:00:00-05:00","datePublished":"2021-10-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://cs598ban.github.io/Fall2021/gan/2021/10/14/GAN1_blog.html"},"description":"Vivek Bhatt (vivekb2@illinois.edu)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Fall2021/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://cs598ban.github.io/Fall2021/feed.xml" title="CS 598 Deep Generative and Dynamical Models" /><link rel="shortcut icon" type="image/x-icon" href="/Fall2021/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Fall2021/">CS 598 Deep Generative and Dynamical Models</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Fall2021/search/">Search</a><a class="page-link" href="/Fall2021/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">GAN1 f-GAN-Training Generative Neural Samplers using Variational Divergence Minimization</h1><p class="page-description">Vivek Bhatt (vivekb2@illinois.edu)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-14T00:00:00-05:00" itemprop="datePublished">
+        Oct 14, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      13 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Fall2021/categories/#GAN">GAN</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div class="stackedit__html">
+<h2 id="intro">Intro</h2>
+<p>This blog post focuses on the paper f-GAN: Training Generative Neural Samplers using Variational Divergence Minimization and focuses on the GAN model and improving the model through making it more versatile and applicable to many different scenarios. Traditionally generative models are very much focused on computing samples or derivations but fail to compute likelihoods and marginalization. To combat the inability to do so, the adversial network was added to the generative model making the GAN model (Generative Adverisial Model). The paper goes into more detail about expanding the adverisal neural network concept and making it more generic so it is applicable to all needs.<br />
+​<br /><br />
+​<br /></p>
+<h2 id="background">Background</h2>
+<p>The paper has two focuses and discusses two model types. The paper aims to improve generative models as a whole, a GAN is a subset of a generative model.</p>
+<br />
+<h3 id="generative-models">Generative Models</h3>
+<p>Generative models are more diverse and on a macro level are made to imitate some kind of distribution. The technical definition is that a a generative distribution aims to describe a probability distribution over a domain. Generative models are able to perform sampling, estimation, and point-wise likelihood estimation tasks. Going more into detail:</p>
+<br />
+<ul>
+<li>
+<h4 id="sampling-br--inspecting-samples-or-calculating-a-function-on-a-set-of-samples---able-to-get-ideas-about-the-distribution--resolve-decisions-from-class-q.">Sampling: <br /> inspecting samples or calculating a function on a set of samples -&gt; able to get ideas about the distribution / resolve decisions from class Q.</h4>
+</li>
+</ul>
+<br />
+<ul>
+<li>
+<h4 id="estimation-br--given-samples-xsub1sub-xsub2sub-.-.-.--xsubnsub-from-an-unknown-true-distribution-get-a-q-that-is-able-to-describe-the-distribution.-true-distributions-only-however">Estimation: <br /> Given samples {x<sub>1</sub>, x<sub>2</sub>, . . . , x<sub>n</sub>} from an unknown true distribution, get a Q that is able to describe the distribution. (*true distributions only however)</h4>
+</li>
+</ul>
+<br />
+<ul>
+<li>
+<h4 id="point-wise-likelihood-eval--br---given-sample-x-able-to-evaluate-likelihood-qx.">Point-wise Likelihood Eval:  <br />  Given sample x, able to evaluate likelihood Q(x).</h4>
+</li>
+</ul>
+<br />
+<h3 id="gans">GANS</h3>
+<p>GANs were first introduced by Goodfellow et al. 2014 and the Goodfellow GAN can be described as follows:<br />
+GANs are type of generative model used to come up with images or other samples to imitate real life samples. In more detail, the objective of the GAN when it comes to training a generator deep net whose input is a standard Gaussian, and whose output is a sample from some real distribution.</p>
+<br />
+<p>GANs have all the features of a normal generative model except they are able to perform additional tasks. GANs are able to perform exact sampling and approximate estimation on top of everything a generative model can do. They are able to do this because of the way the model is designed with the key separator being the adversial neural network. The GAN possesses a feed-forward neural network framework which allows it to produce an output from a random sample known as the generative neural sampler.</p>
+<br />
+The goal of the authors of the paper is to take the functionality of the adversial network within GANs and expand their application to all generative models through something called f-divergence. 
+<br />
+<br />
+<h2 id="understanding-gan-math">Understanding GAN Math</h2>
+<p>GANs comprise of a generator and discriminator working in sync where the generator aims to create an output that will fool the discriminator into thinking that the generator’s output is the same as a real output. The discriminator will give a result which will pass back to the generator for it to improve and once again it will create an output to pass to the discriminator. This cycle is how the GAN is trained. The key component to look at here is the discriminator function. The f-divergence concept is heavily tied to the discriminator and so that is what we will be looking at.<br />
+<br /></p>
+<p>The original GAN paper (Goodfellow et al 2014) described the model to include two divergences for the discriminator. The discriminator mainly compromises of the Jennson-Shannon Divergence (JS) and the Kulback-Leibler Divergence (KL). GANs are different since they use two divergences for training that are optimized simultaneously.</p>
+<br />
+<p><img src="/Fall2021/images/gan1blog1/gan_dfunc.png" alt="GAN divergence function" /></p>
+<br />
+<p>Looking at the image of the Jennson-Shannon Divergence we are able to see how the internal Kulback-Leibler Divergence makes use of both distributions P and Q for comparison.</p>
+<br />
+<p>The critical thing to keep note of here is that D<sub>JS</sub> (P||Q) is a proper divergence measure between distributions this implies that the true<br />
+distribution P can be approximated well in case there are sufficient training samples and the model<br />
+class Q is rich enough to represent P.</p>
+<br />
+<p>The paper expands this concept from the GAN training objective and aims to generalize it for arbitrary f-divergences (so no longer just the Jennson-Shannon or Kulback-Leibler).</p>
+<br />
+<br />
+<h2 id="overview">Overview</h2>
+<p>The core contributions of the paper as follows:</p>
+<ul>
+<li>
+<h3 id="derive-the-gan-training-objectives-for-all-f-divergences-and-provide-as-example-additional-divergence-functions.">Derive the GAN training objectives for all f-divergences and provide as example additional divergence functions.</h3>
+</li>
+</ul>
+<br />
+<ul>
+<li>
+<h3 id="dimplify-the-saddle-point-optimization-procedure-of-goodfellow.">Dimplify the saddle-point optimization procedure of Goodfellow.</h3>
+</li>
+</ul>
+<br />
+<ul>
+<li>
+<h3 id="provide-experimental-insight-into-which-divergence-function-is-suitable-for-estimating.">Provide experimental insight into which divergence function is suitable for estimating.</h3>
+</li>
+</ul>
+<p>This blog post will cover in detail each section for better understanding.</p>
+<h2 id="methodology-f-divergence">Methodology (f-divergence)</h2>
+<p>The idea of f-divergence originates from a different paper (Nguyen et al.). Nguyen came up with a divergence estimation framework based off f-divergence.</p>
+<p>Statistical divergences such as Kullback-Leibler measure the difference between two probability distributions. F-divergences essentially is synonymous as a large class of different divergences known as the Ai-Silvey distances. So, given two distributions P and Q that possess, respectively, an absolutely continuous density function p and q we can define a f-divergence as the following:</p>
+<br />
+<!-- ![GAN_simple_f_divergence](/Fall2021/images/gan1blog1/gan_simple_fdiv.png) -->
+<img src="/Fall2021/images/gan1blog1/gan_simple_fdiv.png" alt="GAN_simple_f_divergence" width="50%" />
+<br />
+<p>The key thing to keep in mind is that f-divergence aims to to find the difference between two distributions and so the generator function f must be convex, lower-semicontinuous function satisfying f(1) = 0. This is critical for the f-divergence to work correctly. This is specific for the function above and would be different for different functions. f(1) = 0, is important so D<sub>f</sub> (P||P) = 0.</p>
+<br />
+<br />
+<h2 id="variational-estimation-of-f-divergences">Variational Estimation of F-Divergences</h2>
+<p>Nguyen et al. derived a general variational method to estimate f-divergences given only samples from P and Q. However, the authors of the paper decided to expand upon that and extend their method from estimating divergences for fixed models to estimating model parameters. Hence, the variational divergence minimization (VDM). The VDM framework was invented to show that GANs fall in this class of framework and is a highly specialized version of tha VDM framework.</p>
+<p>The shortened proof is as follows:</p>
+<p>Continuing off Nguyen et al’s divergence estimation procedure, every convex lower-semicontinuous function (f) has a convex conjugate function (f<sup>*</sup>) that is known as the “Fenchel conjugate”. The function is defined below:</p>
+<br />
+<!-- ![GAN_proof1](/Fall2021/images/gan1blog1/proof1.png) -->
+<img src="/Fall2021/images/gan1blog1/proof1.png" alt="GAN_proof1" width="50%" />
+<br />
+<p>A key characteristic of this function (f*) is that it is also convex and lower-semicontinuous. The creates a duality with f and (f<sup>*</sup>) where f** = f. Thus, the function (f) can be rewritten as</p>
+<img src="/Fall2021/images/gan1blog1/proof1_2.png" alt="GAN_proof1.2" width="60%" />
+<br />
+<p>As it can be seen in the proof, the importance of the structure of the generator goes beyond the first derivative and is needed for the rest of the calculations to occur. The suprema equation gets used below in the next section of the shortened derivation. Which is as follows:</p>
+<br />
+<p>Continuing from the previous equation and taking from Nguyen et al. a new equation can be created. The equation defined above is a variational representation of f and can be substituted into the definition of f-divergence from Nguyen et al. Doing so will create a lower bound on the divergence as follows:</p>
+<br />
+<p><img src="/Fall2021/images/gan1blog1/proof2.png" alt="GAN_proof2" /></p>
+<br />
+<p>In the equation above there are two types of Ts referenced and so for the sake of this blog post T shall indicate the function T(x) and T~ shall indicate the class that T is contained within.</p>
+<p>The T~ is introduced as an arbitrary class of functions but is primarily used to determine which f is the best suited for the situation. The derivation results in a lower bound because of Jensen’s inequality when swapping the integral for a suprema. Another contributing component is that T~ contains only a subset of all possible functions, thus there are only a certain number of possible functions to choose from that fit the requirements.</p>
+<p>Thus, we can determine the T that is the best fit taking the variation of the lower bound from the above T and find that the bound is tight for:</p>
+<br />
+<!-- ![GAN_t_eq](/Fall2021/images/gan1blog1/t_eq.png) -->
+<img src="/Fall2021/images/gan1blog1/t_eq.png" alt="GAN_t_eq" width="35%" />
+<br />
+<p>Defining T* is critical as it is the main component in discovering the optimal function (f) for our divergence. The conditional statement helps in choosing f and designing the class of functions T~. Since every divergence will have it’s own unique T* function we need the condition above to construct a consistent function that can accurately portray f.</p>
+<p>The generated table of relevant divergences and their functions is listed in this table and provides an example of how all these functions differ and their implementation could make profound changes on the applied scenario.</p>
+<br />
+<p><img src="/Fall2021/images/gan1blog1/table1.png" alt="GAN_table1" /></p>
+<br />
+<br />
+<br />
+<h2 id="variational-divergence-minimization-vdm">Variational Divergence Minimization (VDM)</h2>
+<p>All the previous work and definitions were made to fully explain the VDM. The variational lower bound (T) served to figure out the P and Q for D<sub>f</sub>(P||Q). P is the true distribution and Q is the generative model that is estimated based off P.</p>
+<p>To accomplish this goal the GAN approach is considered. By making use of two neural networks Q and T where Q is the generative model and T is the variational function. Q takes in a random input vector and outputs a sample. T takes in an input and returns a scalar. Q uses the variable θ and T uses w. In terms of creating a parametric equation you get:</p>
+<br />
+<!-- ![GAN_eq2](/Fall2021/images/gan1blog1/eq2.png) -->
+<img src="/Fall2021/images/gan1blog1/eq2.png" alt="GAN_eq2" width="50%" />
+<br />
+<p>The generative model (Q) can be learned by finding a saddle point for the following f-GAN objective where the goal is to minimize θ and maximize w.</p>
+<br />
+<p>The terms in the equation above can be calculated through the following: E<sub>x∼P</sub> [·] can be approximated by sampling from the training set without replacement; E<sub>x∼Q<sub>θ</sub></sub> [·] can be approximated through sampling from the current model. It is important to note to sample the same number from each location.</p>
+<br />
+<p>Running Single-Step Gradient we are able to find a saddle point where Theta is strongly convex and W is strongly concave. There can be many satisfying saddle points and so it comes down to setting a custom metric as to what you want to accept.</p>
+<br />
+<p><img src="/Fall2021/images/gan1blog1/crit.png" alt="GAN_crit" /></p>
+<br />
+<h2 id="vdm-vs-gan-construction">VDM vs GAN Construction</h2>
+<p>The GAN model and VDM model look similar and operate similarly too with how they aim to find a saddle point for maximizing and minimizing certain sections. However, there are some key distinctions between the two.</p>
+<br />
+FGAN:
+<br />
+<!-- ![GAN_eq2](/Fall2021/images/gan1blog1/eq2.png) -->
+<img src="/Fall2021/images/gan1blog1/eq2.png" alt="GAN_eq2" width="83%" />
+<br />
+GAN:
+<p><img src="/Fall2021/images/gan1blog1/obj.png" alt="GAN_obj" /></p>
+<br />
+<p>The equations are very similar in appearance but there are some minor discrepancies. The key differences that the D function for GANs is a discriminant function that is more complex than the T lower bound designator function. Also in terms of training speed, maximizing the second term in the F-Gan model is easier than minimizing the second term in the GAN model.</p>
+<p>With this you get to see the improvements made and how the VDM expands the capability of a GAN and improves not only its performance in terms of time to compute, but also widens the number of applications that the GAN is able to be used in.</p>
+<br />
+<br />
+<h2 id="experiments--empirical-results">Experiments &amp; Empirical Results</h2>
+<p>The paper is interesting since it begins talking about f-divergence and expanding on the purpose of f-divergence and their applications. However, the paper ends up with a new model that makes use of f-divergence and variational divergence estimators to make the VDM. This section will consider the success of the VDM. The VDM differs from the traditional GAN and as such is tested differently. The VDM model mainly depends on the divergences that make up the VDM and as such are necessary to test all the various divergences as opposed to just testing the model itself.</p>
+<br />
+<h3 id="different-f-divergences">Different f-divergences</h3>
+<p>When testing for different functions to see how well they perform, the researchers came up with this experiment:</p>
+<p>Have models learn a Gaussian distribution and find the most optimal parameters to describe the Gaussian distribution. When Q, our model, is turned into a linear function that receives: z ~ N(0,1). Q outputs: G<sub>θ</sub>(z) = µ + σz where θ = (µ, σ).</p>
+<p>The results of the experiment led to the following table:</p>
+<br />
+<p><img src="/Fall2021/images/gan1blog1/results1.png" alt="GAN_results1" /></p>
+<br />
+<p>The results of the table affirm the qualities of the VDM. The left side of the table discusses the VDM’s ability to determine the model parameters. This is seen with the µ and σ variables that are meant to show how well the model was able to predict the characteristics as opposed to the best fit / the actual parameters. The right side is a bit less intuitive, but it shows that the models were best fit for the divergence they were trained for. The interesting thing is the dynamic between divergences and well they score when crossfitted with other divergences. This is useful to determine what combinations of divergences are viable options together like for instance using JS and KL for the GAN objective function.</p>
+<br />
+<h3 id="mnist-digits">MNIST Digits</h3>
+<p>Two components to the VDM: Generative Model and Variational Function similar to the GAN. This experiment essentially compares how well the VDM is able to generate MNIST digits using different divergences. The results are compared to a control group. The design of the models that were used for generating were very simple. They made use of a very simple generative model with batch normalization, ReLU, and sigmoid activation functions. The variational function is also simple with a few linear layers and exponential in between.<br />
+The VDM is trained as described by sampling without replacement from batches of size 4096. The model is then trained on that information for one hour. The model was compared against variational autoencoders with at least 20 latent dimensions. The results were compiled by doing kernal density estimation and the average log-likelihood was measured for performance.</p>
+<br />
+<p><img src="/Fall2021/images/gan1blog1/results2.png" alt="GAN_results2" /></p>
+<br />
+<p>The table and the created outputs for some divergences are displayed. The results for each divergence is given and some basic conclusions can be made. Overall, the performance is all over the place in comparison to the control group, with some divergences performing better than others. The point of the experiment still stands and shows that different divergences and combinations of divergences are better for certain implementations and it comes down to the researchers to figure that out.</p>
+<br />
+<br /> 
+<h2 id="conclusions--summary">Conclusions &amp; Summary</h2>
+<p>The focus of the paper was more on the GAN feed forward network and how that generative neural sampler could be applied to all generative models. The paper expanded on the concept of f-divergence borrowing from Nguyen et al and drew elements from the traditional GAN to make a new type of GAN, hence the name of the paper f-GAN. Utilizing the proper divergence function leads to the optimal model and better performance and this point was further emphasized with the experiments. The paper contributed the VDM model and the general idea behind the usage of f-Divergence with an application towards GNS / GANs. Thus, GANs can be generalized to an arbitrary divergence function and the algorithm behind GANs is simplified as well.</p>
+<br />
+<br /> 
+<h2 id="references">References</h2>
+<p>2016 (NeurIPS): S. Nowozin, B. Cseke, R. Tomioka. f-gan: Training generative neural samplers using variational divergence minimization. NeurIPS, 2016.</p>
+</div>
+
+  </div><a class="u-url" href="/Fall2021/gan/2021/10/14/GAN1_blog.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Fall2021/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Fall2021/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Fall2021/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blogs created as a part of graduate course at UIUC on deep generative and dynamical models.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/Fall2021/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
